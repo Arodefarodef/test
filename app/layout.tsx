@@ -1,10 +1,15 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
-import MainLayout from "./mainLayout";
 import { dbconfig } from "@/utils/dbconfig";
+import { NextFont } from "next/dist/compiled/@next/font";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter: NextFont = Inter({ subsets: ["latin"] });
+const poppins: NextFont = Poppins({
+  weight: "300",
+  style: "normal",
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -19,9 +24,7 @@ export default async function RootLayout({
   await dbconfig();
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <MainLayout children={children} />
-      </body>
+      <body className={poppins.className}>{children}</body>
     </html>
   );
 }
